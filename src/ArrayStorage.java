@@ -42,7 +42,7 @@ public class ArrayStorage {
 
     Resume[] getAll() {
         return Arrays.copyOf(storage, size);
-        
+
     }
 
     int size() {
