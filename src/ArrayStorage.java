@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class ArrayStorage {
-    Resume[] storage = new Resume[10];
+    Resume[] storage = new Resume[4];
     private int size;
 
     void clear() {
@@ -11,12 +11,15 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        if (size > 0) {
-            storage[size] = r;
+        int index = searchResume(r.uuid);
+        if (size == storage.length) {
+            System.out.println("ERROR storage is filled");
+        } else if (index >= 0) {
+            System.out.println("ERROR Resume is present in storage");
         } else {
             storage[size] = r;
+            size++;
         }
-        size++;
     }
 
     Resume get(String uuid) {
