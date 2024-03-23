@@ -5,67 +5,68 @@ import model.Resume;
 import java.util.Arrays;
 
 public class ArrayStorage {
-    Resume[] storage = new Resume[4];
+    private static final int STORAGE_LIMIT = 3;
+    private static final Resume[] STORAGE = new Resume[STORAGE_LIMIT];
     private int size;
 
-    void clear() {
-        Arrays.fill(storage, 0, size, null);
+    public void clear() {
+        Arrays.fill(STORAGE, 0, size, null);
         size = 0;
 
     }
 
-    void save(Resume r) {
-        if (size == storage.length) {
+    public void save(Resume r) {
+        if (size == STORAGE.length) {
             System.out.println("ERROR storage is filled");
         } else if (getIndex(r.getUuid()) >= 0) {
             System.out.println("ERROR model.Resume is present in storage");
         } else {
-            storage[size] = r;
+            STORAGE[size] = r;
             size++;
         }
     }
 
-    Resume get(String uuid) {
+    public Resume get(String uuid) {
         int index = getIndex(uuid);
         if (index >= 0) {
-            return storage[index];
+            return STORAGE[index];
         }
         System.out.println("Sorry uuid not found");
         return null;
     }
 
-    void delete(String uuid) {
+    public void delete(String uuid) {
         int index = getIndex(uuid);
         if (index >= 0) {
-            storage[index] = storage[size - 1];
-            storage[size - 1] = null;
+            STORAGE[index] = STORAGE[size - 1];
+            STORAGE[size - 1] = null;
             size--;
         } else System.out.println("Sorry uuid not found");
 
     }
 
-    Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
+    public Resume[] getAll() {
+        return Arrays.copyOf(STORAGE, size);
 
     }
 
-    int size() {
+    public int size() {
         return size;
     }
 
-    void update(String uuid, String uuid2) {
+    public void update(String uuid, String uuid2) {
         int index = getIndex(uuid);
         if (index >= 0) {
             Resume resume = new Resume();
             resume.setUuid(uuid2);
-            storage[index] = resume;
+            STORAGE[index] = resume;
         } else System.out.println("Sorry uuid not found");
 
     }
 
     private int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (storage[i].getUuid().equals(uuid)) {
+            if (STORAGE[i].getUuid().equals(uuid)) {
                 return i;
             }
         }
