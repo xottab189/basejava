@@ -4,7 +4,7 @@ import model.Resume;
 
 import java.util.Arrays;
 
-public class ArrayStorage {
+public class ArrayStorage implements Storage {
     private static final int STORAGE_LIMIT = 3;
     private static final Resume[] STORAGE = new Resume[STORAGE_LIMIT];
     private int size;
