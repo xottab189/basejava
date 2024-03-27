@@ -10,23 +10,24 @@ public class MainTestArrayStorage {
     public static void main(String[] args) {
 
         final Resume r1 = new Resume();
-        r1.uuid = "uuid1";
+        r1.setUuid("uuid1");
         final Resume r2 = new Resume();
         r2.setUuid("uuid2");
         final Resume r3 = new Resume();
-        r3.uuid = "uuid3";
+        r3.setUuid("uuid3");
 
         STORAGE.save(r1);
         STORAGE.save(r2);
         STORAGE.save(r3);
 
-        System.out.println("Get r1: " + STORAGE.get(r1.getUuid());
+
+        System.out.println("Get r1: " + STORAGE.get("uuid1"));
         System.out.println("Size: " + STORAGE.size());
 
         System.out.println("Get dummy: " + STORAGE.get("dummy"));
 
         printAll();
-        STORAGE.delete(r1.uuid);
+        STORAGE.delete(r1.getUuid());
         printAll();
         STORAGE.clear();
         printAll();
