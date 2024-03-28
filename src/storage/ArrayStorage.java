@@ -2,15 +2,7 @@ package storage;
 
 import model.Resume;
 
-import java.util.Arrays;
-
-public class ArrayStorage implements Storage {
-
-    public void clear() {
-        Arrays.fill(STORAGE, 0, size, null);
-        size = 0;
-
-    }
+public class ArrayStorage extends AbstractArrayStorage {
 
     public void save(Resume r) {
         if (size == STORAGE.length) {
@@ -40,15 +32,6 @@ public class ArrayStorage implements Storage {
             size--;
         } else System.out.println("Sorry uuid not found");
 
-    }
-
-    public Resume[] getAll() {
-        return Arrays.copyOf(STORAGE, size);
-
-    }
-
-    public int size() {
-        return size;
     }
 
     public void update(String uuid, String uuid2) {
