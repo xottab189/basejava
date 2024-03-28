@@ -4,7 +4,10 @@ import model.Resume;
 
 import java.util.Arrays;
 
-public class ArrayStorage implements Storage {
+public class AbstractArrayStorage implements Storage {
+    protected static final int STORAGE_LIMIT = 3;
+    protected static final Resume[] STORAGE = new Resume[STORAGE_LIMIT];
+    protected int size;
 
     public void clear() {
         Arrays.fill(STORAGE, 0, size, null);
